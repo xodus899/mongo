@@ -57,8 +57,8 @@ Fruit.insertMany([kiwi,orange,banana], (err) => {
 })
 
 //save the document into the fruits collection inside the fruitsDB
-// console.log(fruit);
-// fruit.save();
+console.log(fruit);
+fruit.save();
 
 
 const personSchema = new mongoose.Schema ({
@@ -76,3 +76,18 @@ const person = new Person ({
 
 console.log(person);
 person.save();
+
+
+// reads fruitsDB, fruit schema, fruits collections to find all fruits. Can specify more specific query if needed, using query.where
+Fruit.find( (err, fruits) => {
+  if(err) {
+    console.log(err);
+  } else {
+    // returns an array of objects
+    fruits.forEach((fruit) => {
+      console.log(fruit.name)
+    })
+    //close connection
+    mongoose.connection.close()
+  }
+});

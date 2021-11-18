@@ -53,6 +53,14 @@ const kiwi = new Fruit ({
 	review: "Nice texture!"
 });
 
+const pineapple = new Fruit({
+  name:"Pineapple",
+  score:9,
+  review:"Best fruit ever"
+})
+
+pineapple.save();
+
 // allows to save many fruits at once
 // connects to relavent collection/schema
 // Fruit.insertMany([kiwi,orange,banana], (err) => {
@@ -70,7 +78,8 @@ const kiwi = new Fruit ({
 
 const personSchema = new mongoose.Schema ({
   name: String,
-  age: Number
+  age: Number,
+  favoriteFruit: fruitSchema
 });
 
 // converts person to plural collection people
@@ -80,19 +89,27 @@ const person = new Person ({
   name: "John",
   age: 37
 });
+// create relationship between people and fruits
+// update schema to have favoriteFruit, use favorite fruit to call fruitSchema -- pineapple.
+const amy = new Person({
+  name:"Amy",
+  age:"21",
+  favoriteFruit: pineapple
+});
+amy.save();
 
 // console.log(person);
 // person.save();
 
 // update item by id Model.updateOne()
-Fruit.updateOne({_id:"6196ab6957ed6b8eefd95b9c"}, {rating: 8}, (err) => {
-  if(err) {
-    console.log(err);
-  } else {
-    console.log("Successfully updated document");
-  }
-
-});
+// Fruit.updateOne({_id:"6196ab6957ed6b8eefd95b9c"}, {rating: 8}, (err) => {
+//   if(err) {
+//     console.log(err);
+//   } else {
+//     console.log("Successfully updated document");
+//   }
+//
+// });
 
 //Model.deleteOne()
 // Fruit.deleteOne({_id:"6196902fa616904491ef1c8d"}, (err) => {
@@ -114,16 +131,16 @@ Fruit.updateOne({_id:"6196ab6957ed6b8eefd95b9c"}, {rating: 8}, (err) => {
 
 // reads fruitsDB, fruit schema, fruits collections to find all fruits. Can specify more specific query if needed, using query.where
 // read db (will not work if insert or save is being used) Model.find()
-Fruit.find((err, fruits) => {
-    if(err){
-    console.log(err);
-    } else {
-        fruits.forEach((fruit) =>{
-        console.log(fruit.name);
-        });
-   }
-
-   // close connection inside callback
-   mongoose.connection.close();
-   console.log("CONNECTION CLOSED");
-});
+// Fruit.find((err, fruits) => {
+//     if(err){
+//     console.log(err);
+//     } else {
+//         fruits.forEach((fruit) =>{
+//         console.log(fruit.name);
+//         });
+//    }
+//
+//    // close connection inside callback
+//    mongoose.connection.close();
+//    console.log("CONNECTION CLOSED");
+// });

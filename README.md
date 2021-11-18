@@ -5,11 +5,11 @@
    - Install mongoose (npm install mongoose)
    
    
-   In your console run
+   In your console run:-
     - mongod to start server
     - node app.js to add fruit to DB
    
-   To check if the fruit was added
+   To check if the fruit was added:
     - Open a new console
     - Run mongo
     - show dbs

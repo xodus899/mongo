@@ -3,11 +3,9 @@
   To run locally:
    - Install mongo (npm install mongodb)
    - Install mongoose (npm install mongoose)
-   
-   
-   In your console run:
-    - mongod to start server
-    - node app.js to add fruit to DB
+      - In your console run:
+        - mongod to start server
+        - node app.js to add fruit to DB
    
    
    To check if the fruit was added:

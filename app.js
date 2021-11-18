@@ -12,7 +12,7 @@ const fruitSchema = new mongoose.Schema ({
   // _id: Number,
 	name: {
     type:String,
-    required:true
+    required:[true, "Name is require, please check your entry"]
   },
 	rating: {
     type:Number,

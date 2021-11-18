@@ -84,32 +84,46 @@ const person = new Person ({
 // console.log(person);
 // person.save();
 
+// update item by id Model.updateOne()
+Fruit.updateOne({_id:"6196ab6957ed6b8eefd95b9c"}, {rating: 8}, (err) => {
+  if(err) {
+    console.log(err);
+  } else {
+    console.log("Successfully updated document");
+  }
 
-// reads fruitsDB, fruit schema, fruits collections to find all fruits. Can specify more specific query if needed, using query.where
-//  Fruit.find( (err, fruits) => {
+});
+
+//Model.deleteOne()
+// Fruit.deleteOne({_id:"6196902fa616904491ef1c8d"}, (err) => {
 //   if(err) {
 //     console.log(err);
-//
 //   } else {
-//     mongoose.connection.close();
-//     console.log("CLOSED");
-//     fruits.forEach((fruit) => {
-//       console.log(fruit.name);
-//     })
+//     console.log("Successfully DELETED from document");
 //   }
 // });
 
+// Model.deleteMany()  --- remove any with the case of Apple
+// Fruit.deleteMany({name:"Apple"}, (err) => {
+//   if(err) {
+//     console.log(err);
+//   } else {
+//     console.log("Successfully DELETED from document");
+//   }
+// });
 
-// read db (will not work if insert or save is being used)
-Fruit.find(function(err, fruits){
+// reads fruitsDB, fruit schema, fruits collections to find all fruits. Can specify more specific query if needed, using query.where
+// read db (will not work if insert or save is being used) Model.find()
+Fruit.find((err, fruits) => {
     if(err){
     console.log(err);
     } else {
-        // close connection inside callback
-        mongoose.connection.close();
-
-        fruits.forEach(function(fruit){
+        fruits.forEach((fruit) =>{
         console.log(fruit.name);
         });
    }
+
+   // close connection inside callback
+   mongoose.connection.close();
+   console.log("CONNECTION CLOSED");
 });
